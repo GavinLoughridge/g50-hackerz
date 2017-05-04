@@ -1,21 +1,23 @@
-var express = require('express');
-var app = express();
+'use strict';
+
+const express = require('express');
+const app = express();
 
 app.get('/', function(req, res) {
   res.send("HELLO WORLD!");
 });
 
 app.get('/:operation/:x/:y', function(req, res) {
-  var operators = {
+  const operators = {
     add: "+",
     sub: "-",
     mult: "*",
     div: "/"
-  }
-  var operator = operators[req.params.operation]
+  };
+  const operator = operators[req.params.operation];
 
   try {
-    var result = eval(req.params.x + operator + req.params.y);
+    const result = eval(req.params.x + operator + req.params.y);
     res.send(result.toString());
   }
   catch (error) {
